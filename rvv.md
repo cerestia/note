@@ -1,7 +1,9 @@
-通用操作
-1. 设置vl
-size_t vl = __riscv_vsetvl_e32m1(ARRAY_NUM); //ARRAY_NUM为数组长度
-2. 加载数组到矢量
-vint32m1_t v1 = __riscv_vle32_v_i32m1(a, vl);
-3. 存储矢量到数组
-vint32m1_t v2 = __riscv_vle32_v_i32m1(b, vl);
+rvv介绍
+# rvv扩展集介绍
+rvv是riscv矢量指令扩展。不同于定长矢量指令，rvv的寄存器宽度和元素宽度可以变化，大概分为三类指令，加载与存取，运算指令，配置指令。运算指令需要在使用使用配置指令设置相关寄存器
+## 硬件需要实现的内容
+32个通用矢量寄存器，宽度根据厂商实现有不同。硬件矢量寄存器宽度被称为vlen
+vl寄存器
+vstart寄存器
+vlenb寄存器
+vxrm寄存器

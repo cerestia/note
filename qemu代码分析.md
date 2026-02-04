@@ -4,11 +4,21 @@ qemu是一个模拟器，模拟器计算机。本文分析qemu的纯软模拟，
 qemu 模拟裸板行为。包括cpu,drm，spi,xpi，flash等外设。
 cpu功能包括模拟寄存器，执行取指，译码，执行。页表转换,中断处理器，外设和时钟中断。
 
+## qemu选项解析流程
+-kernel:指定内核路径，支持elf文件格式。调用riscv_load_kernel函数进行解析，加载到ram。
+
 ## 使用qemu运行裸机程序流程分析
 ### qemu运行指令流程解析
 实际的机器一般包括什么，qemu这里运行命令，需要模拟什么.
 以运行一些赋值和运算类的指令为例子，要模运行这个elf，我们需要cpu，内存完成取指令，译码，执行。cpu的pc寄存器复位后指向特定地址，不断从内存中取出指令，译码为对应的操作后执行。
-#### cpu复位
+#### 运行elf文件
+命令如下：
+```shell
+qemu-system-riscv32 -nographic -smp 1 -machine virt -bios none -kernel out/os.elf
+```
+
+
+
 #### 指令加载流程
 #### 
 ### qemu指令trace打印与格式修改
